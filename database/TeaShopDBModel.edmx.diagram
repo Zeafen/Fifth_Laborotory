@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="18397f2321e9441088dcb12c50341cf9" Name="Diagram1">
+        <EntityTypeShape EntityType="TeaShopDBModel.Accounts" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Collection_OrdersTeas" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.CollectionForms" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Collections" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.CollectionsStorage" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.CollectionTeas" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Cup_OrdersTeas" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Cups" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Employees" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Orders" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Pack_OrdersTeas" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Packages" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Producers" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Roles" Width="1.5" PointX="1.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.Storage" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.TeaSorts" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.TeaTypes" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.CollectionsMenu" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeaShopDBModel.TeasMenu" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Accounts__Role_I__11558062" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Employees__Accou__15261146" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Colle__42ECDBF6" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Order__41F8B7BD" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Colle__22800C64" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Colle__26509D48" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Colle__2A212E2C" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__Emplo__2374309D" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Collectio__TeaSo__292D09F3" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Cup_Order__Cup_I__3E2826D9" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Cup_Order__Order__3C3FDE67" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Cup_Order__TeaSo__3D3402A0" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Orders__Emplyoee__2DF1BF10" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Pack_Orde__Order__36870511" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Pack_Orde__Packa__3592E0D8" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Pack_Orde__TeaSo__349EBC9F" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__TeaSorts__Produc__1DBB5747" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__Storage__Tea_ID__47B19113" ManuallyRouted="false" />
+        <AssociationConnector Association="TeaShopDBModel.FK__TeaSorts__TeaTyp__1CC7330E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

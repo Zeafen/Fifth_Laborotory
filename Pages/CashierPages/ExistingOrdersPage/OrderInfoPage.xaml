@@ -1,0 +1,327 @@
+﻿<Window x:Class="Final_Practice.Pages.CashierPages.ExistingOrdersPage.OrderInfoWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Final_Practice.Pages.CashierPages.ExistingOrdersPage"
+      xmlns:rules="clr-namespace:Final_Practice.Rules"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="OrderInfoPage" Background="White" DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ordersVM}" Height="582">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.7*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Name="InfoField" DataContext="{Binding CurrentOrder}" Background="DarkSlateGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Padding="8" Text="Order info" HorizontalAlignment="Center" FontSize="20" FontFamily="Sans" FontWeight="Bold"/>
+
+            <TextBlock Grid.Row="1" Text="Order date:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Order_Date, Mode=TwoWay}" VerticalAlignment="Center" Margin="8"/>
+            
+            <TextBlock Grid.Row="2" Text="Paid summ:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1"  Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150" LostFocus="TextBox_LostFocus">
+                <TextBox.Text>
+                    <Binding Path="Order_Paid" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NumInputRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+                <Button Content="Update Order" VerticalAlignment="Center" Margin="8"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.updateOrderCommand}" 
+                        CommandParameter="{Binding ElementName=InfoField, Path=DataContext}" Click="OnGoBack_Click"/>
+                <Button Margin="8" Content="Delete Order" 
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.deleteOrderCommand}"
+                        CommandParameter="{Binding ElementName=InfoField, Path=DataContext}" Click="OnGoBack_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Column="1">
+
+            <TabItem Header="Packages">
+                <Grid Name="PackagesGr" DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=packOrdersVM}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid ItemsSource="{Binding Pack_OrdersTeas}" SelectedItem="{Binding CurrentPack_OrdersTeas, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False" MouseDoubleClick="PacksDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn CanUserSort="False" Header="Tea Sort">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="1.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.RowSpan="2" Height="60" Width="60">
+                                                <Image.Source>
+                                                    <Binding Path="TeaSorts.TeaSort_ImageUrl">
+                                                        <Binding.ValidationRules>
+                                                            <rules:NotNullPointingUrlRule/>
+                                                            <ExceptionValidationRule/>
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </Image.Source>
+                                            </Image>
+                                            <TextBlock Margin="8" Grid.Column="1" VerticalAlignment="Bottom" TextAlignment="Center" Text="{Binding TeaSorts.TeaSort_Name}"/>
+                                            <TextBlock Margin="8" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center" Text="{Binding TeaSorts.TeaSort_Description}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Tea price for unit(100 gr)%" Binding="{Binding TeaSorts.TeaSort_PackPrice}"/>
+                            <DataGridTextColumn Header="Package" Binding="{Binding Packages.Package_Name}"/>
+                            <DataGridTextColumn Header="Package Capacity" Binding="{Binding Packages.Package_AmountTea}"/>
+                            <DataGridTextColumn Header="Ordered count" Binding="{Binding PackOrderTeas_Count}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <GridSplitter Grid.Row="1" Height="5" BorderThickness="5" BorderBrush="Red" HorizontalAlignment="Center" ResizeDirection="Rows" Width="Auto"/>
+
+                    <ScrollViewer Grid.Row="2">
+                        <Grid Name="PackOrderInfo" DataContext="{Binding CurrentPack_OrdersTeas}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="2" Padding="8" Text="Package Order info" HorizontalAlignment="Center" FontSize="20" FontFamily="Sans" FontWeight="Bold"/>
+
+                            <TextBlock Grid.Row="1" Text="TeaSort:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding ElementName=PackagesGr, Path=DataContext.TeaSorts}" SelectedItem="{Binding TeaSorts}" DisplayMemberPath="TeaSort_Name"/>
+
+
+                            <TextBlock Grid.Row="2" Text="Package:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding ElementName=PackagesGr, Path=DataContext.Packages}" SelectedItem="{Binding Packages}" DisplayMemberPath="Package_Name"/>
+
+                            <TextBlock Grid.Row="3" Text="Amount of tea:" TextWrapping="Wrap" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                                <TextBox.Text>
+                                    <Binding Path="PackOrderTeas_Count" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:NumInputRule/>
+                                            <ExceptionValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <StackPanel Grid.Row="4"  Grid.ColumnSpan="2">
+                                <Button Content="Update pack order" VerticalAlignment="Center" Margin="8" Command="{Binding ElementName=PackagesGr, Path=DataContext.updatePack_OrdersTeasCommand}" CommandParameter="{Binding ElementName=PackOrderInfo, Path=DataContext}"/>
+                                <Button Content="Delete order" VerticalAlignment="Center" Margin="8" Command="{Binding ElementName=PackagesGr, Path=DataContext.deletePack_OrdersTeasCommand}" CommandParameter="{Binding ElementName=PackOrderInfo, Path=DataContext}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Cups" >
+                <Grid Name="CupsGr" DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=cupOrdersVM}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid ItemsSource="{Binding Cup_OrdersTeas}" SelectedItem="{Binding CurrentCup_OrdersTeas, Mode=TwoWay}" MouseDoubleClick="CupDataGrid_MouseDoubleClick" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn CanUserSort="False" Header="Tea Sort">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="1.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.RowSpan="2" Height="60" Width="60">
+                                                <Image.Source>
+                                                    <Binding Path="TeaSorts.TeaSort_ImageUrl">
+                                                        <Binding.ValidationRules>
+                                                            <rules:NotNullPointingUrlRule/>
+                                                            <ExceptionValidationRule/>
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </Image.Source>
+                                            </Image>
+                                            <TextBlock Margin="8" Grid.Column="1" VerticalAlignment="Bottom" TextAlignment="Center" Text="{Binding TeaSorts.TeaSort_Name}"/>
+                                            <TextBlock Margin="8" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center" Text="{Binding TeaSorts.TeaSort_Description}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Tea price for unit(50 milliliters)%" Binding="{Binding TeaSorts.TeaSort_CupPrice}"/>
+                            <DataGridTextColumn Header="Cup" Binding="{Binding Cups.Cup_Name}"/>
+                            <DataGridTextColumn Header="Cup Capacity" Binding="{Binding Cups.Cup_AmountTea}"/>
+                            <DataGridTextColumn Header="Ordered count" Binding="{Binding CupOrderTeas_Count}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    <GridSplitter Grid.Row="1" Height="5" BorderThickness="5" BorderBrush="Red" HorizontalAlignment="Center" ResizeDirection="Rows" Width="Auto"/>
+
+                    <ScrollViewer Grid.Row="2">
+                        <Grid Name="CupOrderInfo" DataContext="{Binding CurrentCup_OrdersTeas}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="2" Padding="8" Text="Cup Order info" HorizontalAlignment="Center" FontSize="20" FontFamily="Sans" FontWeight="Bold"/>
+
+                            <TextBlock Grid.Row="1" Text="TeaSort:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding ElementName=CupsGr, Path=DataContext.TeaSorts}" SelectedItem="{Binding TeaSorts}" DisplayMemberPath="TeaSort_Name"/>
+
+
+                            <TextBlock Grid.Row="2" Text="Cup:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding ElementName=CupsGr, Path=DataContext.Cups}" SelectedItem="{Binding Cups}" DisplayMemberPath="Cup_Name"/>
+
+                            <TextBlock Grid.Row="3" Text="Amount of tea:" TextWrapping="Wrap" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                                <TextBox.Text>
+                                    <Binding Path="CupOrderTeas_Count" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:NumInputRule/>
+                                            <ExceptionValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <StackPanel Grid.Row="4"  Grid.ColumnSpan="2">
+                                <Button Content="Update cup order" VerticalAlignment="Center" Margin="8" Command="{Binding ElementName=CupsGr, Path=DataContext.updateCup_OrdersTeasCommand}" CommandParameter="{Binding ElementName=CupOrderInfo, Path=DataContext}"/>
+                                <Button Content="Delete order" VerticalAlignment="Center" Margin="8" Command="{Binding ElementName=CupsGr, Path=DataContext.deleteCup_OrdersTeasCommand}" CommandParameter="{Binding ElementName=CupOrderInfo, Path=DataContext}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+
+                
+            </TabItem>
+            
+            <TabItem Header="Collections">
+                <Grid Name="CollectionsGr" DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=collectionOrdersVM}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid ItemsSource="{Binding Collection_OrdersTeas}" SelectedItem="{Binding CurrentCollection_OrdersTeas, Mode=TwoWay}" AutoGenerateColumns="False" CanUserAddRows="False" MouseDoubleClick="CollectionDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn CanUserSort="False" Header="Collection">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="1.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.RowSpan="2"  Height="60" Width="60">
+                                                <Image.Source>
+                                                    <Binding Path="Collections.Collection_ImageUrl">
+                                                        <Binding.ValidationRules>
+                                                            <rules:NotNullPointingUrlRule/>
+                                                            <ExceptionValidationRule/>
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </Image.Source>
+                                            </Image>
+                                            <TextBlock Margin="8" Grid.Column="1" VerticalAlignment="Bottom" TextAlignment="Center" Text="{Binding Collections.Collection_Name}"/>
+                                            <TextBlock Margin="8" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Center" Text="{Binding Collections.Collection_Description}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Collection price" Binding="{Binding Collections.Collection_Price}"/>
+                            <DataGridTextColumn Header="Ordered count" Binding="{Binding CollectionOrderTea_Count}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <GridSplitter Grid.Row="1" Height="5" BorderThickness="5" BorderBrush="Red" HorizontalAlignment="Center" ResizeDirection="Rows" Width="Auto"/>
+
+                    <ScrollViewer Grid.Row="2">
+                        <Grid Name="CollectionOrderInfo" DataContext="{Binding CurrentCollection_OrdersTeas}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="2" Padding="8" Text="Collection order info" HorizontalAlignment="Center" FontSize="20" FontFamily="Sans" FontWeight="Bold"/>
+
+
+
+                            <TextBlock Grid.Row="1" Text="Collection:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding ElementName=CollectionsGr, Path=DataContext.Collections}" SelectedItem="{Binding Collections}" DisplayMemberPath="Collection_Name"/>
+
+                            <TextBlock Grid.Row="2" Text="Amount of tea:" TextWrapping="Wrap" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                                <TextBox.Text>
+                                    <Binding Path="CollectionOrderTea_Count" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <rules:NumInputRule/>
+                                            <ExceptionValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <StackPanel Grid.Row="3"  Grid.ColumnSpan="2">
+                                <Button Content="Update collection order" VerticalAlignment="Center" Margin="8" 
+                                        Command="{Binding ElementName=CollectionsGr, Path=DataContext.updateCollection_OrdersTeasCommand}" 
+                                        CommandParameter="{Binding ElementName=CollectionOrderInfo, Path=DataContext}"/>
+                                <Button Content="Delete order" VerticalAlignment="Center" Margin="8" 
+                                        Command="{Binding ElementName=CollectionsGr, Path=DataContext.deleteCollection_OrdersTeasCommand}" 
+                                        CommandParameter="{Binding ElementName=CollectionOrderInfo, Path=DataContext}"/>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+    </Grid>
+</Window>

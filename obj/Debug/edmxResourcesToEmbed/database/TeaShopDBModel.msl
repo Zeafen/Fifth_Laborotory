@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeaShopDBModelStoreContainer" CdmEntityContainer="TeaShopDBContext">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Accounts">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+          <ScalarProperty Name="Account_Login" ColumnName="Account_Login" />
+          <ScalarProperty Name="Account_Password" ColumnName="Account_Password" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Collection_OrdersTeas">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Collection_OrdersTeas">
+        <MappingFragment StoreEntitySet="Collection_OrdersTeas">
+          <ScalarProperty Name="ID_CollectionOrderTea" ColumnName="ID_CollectionOrderTea" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Collection_ID" ColumnName="Collection_ID" />
+          <ScalarProperty Name="CollectionOrderTea_Count" ColumnName="CollectionOrderTea_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionForms">
+      <EntityTypeMapping TypeName="TeaShopDBModel.CollectionForms">
+        <MappingFragment StoreEntitySet="CollectionForms">
+          <ScalarProperty Name="ID_CollectionForm" ColumnName="ID_CollectionForm" />
+          <ScalarProperty Name="Collection_CellAmount" ColumnName="Collection_CellAmount" />
+          <ScalarProperty Name="Collection_Size" ColumnName="Collection_Size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Collections">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Collections">
+        <MappingFragment StoreEntitySet="Collections">
+          <ScalarProperty Name="ID_Collection" ColumnName="ID_Collection" />
+          <ScalarProperty Name="Collection_Name" ColumnName="Collection_Name" />
+          <ScalarProperty Name="Collection_Description" ColumnName="Collection_Description" />
+          <ScalarProperty Name="Collection_Price" ColumnName="Collection_Price" />
+          <ScalarProperty Name="CollectionForm_ID" ColumnName="CollectionForm_ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Collection_ImageUrl" ColumnName="Collection_ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionsStorage">
+      <EntityTypeMapping TypeName="TeaShopDBModel.CollectionsStorage">
+        <MappingFragment StoreEntitySet="CollectionsStorage">
+          <ScalarProperty Name="ID_CollectionStorage" ColumnName="ID_CollectionStorage" />
+          <ScalarProperty Name="Collection_ID" ColumnName="Collection_ID" />
+          <ScalarProperty Name="CollectionStorage_Count" ColumnName="CollectionStorage_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionTeas">
+      <EntityTypeMapping TypeName="TeaShopDBModel.CollectionTeas">
+        <MappingFragment StoreEntitySet="CollectionTeas">
+          <ScalarProperty Name="ID_CollectionTeas" ColumnName="ID_CollectionTeas" />
+          <ScalarProperty Name="TeaSort_ID" ColumnName="TeaSort_ID" />
+          <ScalarProperty Name="Collection_ID" ColumnName="Collection_ID" />
+          <ScalarProperty Name="CollectionTeas_AmountTeas" ColumnName="CollectionTeas_AmountTeas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cup_OrdersTeas">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Cup_OrdersTeas">
+        <MappingFragment StoreEntitySet="Cup_OrdersTeas">
+          <ScalarProperty Name="ID_CupOrderTeas" ColumnName="ID_CupOrderTeas" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="TeaSort_ID" ColumnName="TeaSort_ID" />
+          <ScalarProperty Name="Cup_ID" ColumnName="Cup_ID" />
+          <ScalarProperty Name="CupOrderTeas_Count" ColumnName="CupOrderTeas_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cups">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Cups">
+        <MappingFragment StoreEntitySet="Cups">
+          <ScalarProperty Name="ID_Cup" ColumnName="ID_Cup" />
+          <ScalarProperty Name="Cup_Name" ColumnName="Cup_Name" />
+          <ScalarProperty Name="Cup_AmountTea" ColumnName="Cup_AmountTea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+          <ScalarProperty Name="Employee_Patronymic" ColumnName="Employee_Patronymic" />
+          <ScalarProperty Name="Employee_Age" ColumnName="Employee_Age" />
+          <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+          <ScalarProperty Name="Order_TotalPrice" ColumnName="Order_TotalPrice" />
+          <ScalarProperty Name="Emplyoee_ID" ColumnName="Emplyoee_ID" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Order_Paid" ColumnName="Order_Paid" />
+          <ScalarProperty Name="Order_PayBack" ColumnName="Order_PayBack" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pack_OrdersTeas">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Pack_OrdersTeas">
+        <MappingFragment StoreEntitySet="Pack_OrdersTeas">
+          <ScalarProperty Name="ID_PackOrderTeas" ColumnName="ID_PackOrderTeas" />
+          <ScalarProperty Name="TeaSort_ID" ColumnName="TeaSort_ID" />
+          <ScalarProperty Name="Package_ID" ColumnName="Package_ID" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="PackOrderTeas_Count" ColumnName="PackOrderTeas_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Packages">
+        <MappingFragment StoreEntitySet="Packages">
+          <ScalarProperty Name="ID_Package" ColumnName="ID_Package" />
+          <ScalarProperty Name="Package_Name" ColumnName="Package_Name" />
+          <ScalarProperty Name="Package_AmountTea" ColumnName="Package_AmountTea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producers">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Producers">
+        <MappingFragment StoreEntitySet="Producers">
+          <ScalarProperty Name="ID_Producer" ColumnName="ID_Producer" />
+          <ScalarProperty Name="Producer_Name" ColumnName="Producer_Name" />
+          <ScalarProperty Name="Producer_Country" ColumnName="Producer_Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+          <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+          <ScalarProperty Name="Role_Description" ColumnName="Role_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Storage">
+      <EntityTypeMapping TypeName="TeaShopDBModel.Storage">
+        <MappingFragment StoreEntitySet="Storage">
+          <ScalarProperty Name="ID_Storage" ColumnName="ID_Storage" />
+          <ScalarProperty Name="Tea_ID" ColumnName="Tea_ID" />
+          <ScalarProperty Name="Storage_CountTea" ColumnName="Storage_CountTea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeaSorts">
+      <EntityTypeMapping TypeName="TeaShopDBModel.TeaSorts">
+        <MappingFragment StoreEntitySet="TeaSorts">
+          <ScalarProperty Name="ID_TeaSort" ColumnName="ID_TeaSort" />
+          <ScalarProperty Name="TeaType_ID" ColumnName="TeaType_ID" />
+          <ScalarProperty Name="Producer_ID" ColumnName="Producer_ID" />
+          <ScalarProperty Name="TeaSort_Name" ColumnName="TeaSort_Name" />
+          <ScalarProperty Name="TeaSort_Description" ColumnName="TeaSort_Description" />
+          <ScalarProperty Name="TeaSort_FermentatinPeriod" ColumnName="TeaSort_FermentatinPeriod" />
+          <ScalarProperty Name="TeaSort_PackPrice" ColumnName="TeaSort_PackPrice" />
+          <ScalarProperty Name="TeaSort_CupPrice" ColumnName="TeaSort_CupPrice" />
+          <ScalarProperty Name="TeaSort_ImageUrl" ColumnName="TeaSort_ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeaTypes">
+      <EntityTypeMapping TypeName="TeaShopDBModel.TeaTypes">
+        <MappingFragment StoreEntitySet="TeaTypes">
+          <ScalarProperty Name="ID_TeaType" ColumnName="ID_TeaType" />
+          <ScalarProperty Name="TeaType_Name" ColumnName="TeaType_Name" />
+          <ScalarProperty Name="TeaType_Description" ColumnName="TeaType_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectionsMenu">
+      <EntityTypeMapping TypeName="TeaShopDBModel.CollectionsMenu">
+        <MappingFragment StoreEntitySet="CollectionsMenu">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Image_Url" ColumnName="Image_Url" />
+          <ScalarProperty Name="Collection_Name" ColumnName="Collection_Name" />
+          <ScalarProperty Name="Collection_Description" ColumnName="Collection_Description" />
+          <ScalarProperty Name="At_Storage" ColumnName="At_Storage" />
+          <ScalarProperty Name="Stored_Count" ColumnName="Stored_Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeasMenu">
+      <EntityTypeMapping TypeName="TeaShopDBModel.TeasMenu">
+        <MappingFragment StoreEntitySet="TeasMenu">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Image_Url" ColumnName="Image_Url" />
+          <ScalarProperty Name="Sort_Name" ColumnName="Sort_Name" />
+          <ScalarProperty Name="Sort_Description" ColumnName="Sort_Description" />
+          <ScalarProperty Name="Prooducer" ColumnName="Prooducer" />
+          <ScalarProperty Name="Fermentation_Period" ColumnName="Fermentation_Period" />
+          <ScalarProperty Name="Cup_Price" ColumnName="Cup_Price" />
+          <ScalarProperty Name="Pack_Price" ColumnName="Pack_Price" />
+          <ScalarProperty Name="At_Storage" ColumnName="At_Storage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

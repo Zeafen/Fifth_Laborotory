@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6AC6CB24-0D55-4C9A-BE8C-8B065E57EED5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Final_Practice</RootNamespace>
+    <AssemblyName>Final_Practice</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=3.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.3.0.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.5.0.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AdminTables.cs" />
+    <Compile Include="CurrentOrderType.cs" />
+    <Compile Include="database\Accounts.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\CollectionForms.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Collections.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\CollectionsMenu.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\CollectionsStorage.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\CollectionTeas.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Collection_OrdersTeas.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Cups.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Cup_OrdersTeas.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Employees.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Orders.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Packages.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Pack_OrdersTeas.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Producers.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Roles.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Storage.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeaShopDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeaShopDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeaShopDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeaShopDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeaShopDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeasMenu.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeaSorts.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\TeaTypes.cs">
+      <DependentUpon>TeaShopDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AccountsPage.xaml.cs">
+      <DependentUpon>AccountsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\EmployeesPage.xaml.cs">
+      <DependentUpon>EmployeesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\RolesPage.xaml.cs">
+      <DependentUpon>RolesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\ModifyCommandBase.cs" />
+    <Compile Include="Commands\RelayComand.cs" />
+    <Compile Include="Commands\RelayComandT.cs" />
+    <Compile Include="Pages\CashierPages\CashPage.xaml.cs">
+      <DependentUpon>CashPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CashierPages\ExistingOrdersPage\OrderInfoPage.xaml.cs">
+      <DependentUpon>OrderInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CashierPages\ExistingOrdersPage\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CashierPages\ExistingOrdersPage\PayingWindow.xaml.cs">
+      <DependentUpon>PayingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Collections\CollectionsPage.xaml.cs">
+      <DependentUpon>CollectionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Collections\CollectionTeasPage.xaml.cs">
+      <DependentUpon>CollectionTeasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Forms\CollectionFormsPage.xaml.cs">
+      <DependentUpon>CollectionFormsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Forms\CupsPage.xaml.cs">
+      <DependentUpon>CupsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Forms\PackagesPage.xaml.cs">
+      <DependentUpon>PackagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Storages\CollectionsStoragePage.xaml.cs">
+      <DependentUpon>CollectionsStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Teas\ProducersPage.xaml.cs">
+      <DependentUpon>ProducersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Storages\StoragePage.xaml.cs">
+      <DependentUpon>StoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Teas\TeaTypesPage.xaml.cs">
+      <DependentUpon>TeaTypesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\AgeInputRule.cs" />
+    <Compile Include="Rules\NotNullPointingUrlRule.cs" />
+    <Compile Include="serializers\AccountsSerializer.cs" />
+    <Compile Include="serializers\CollectionsSerializer.cs" />
+    <Compile Include="serializers\Employee_Serializer.cs" />
+    <Compile Include="serializers\RolesSerializer.cs" />
+    <Compile Include="serializers\TeaSortSerializer.cs" />
+    <Compile Include="StorageTables.cs" />
+    <Compile Include="StorageWindow.xaml.cs">
+      <DependentUpon>StorageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoragePages\Teas\TeaSortsPage.xaml.cs">
+      <DependentUpon>TeaSortsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CashierWindow.xaml.cs">
+      <DependentUpon>CashierWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\CashierPagesViewModels\CashierPageViewModel.cs" />
+    <Compile Include="ViewModels\CashierPagesViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\CollectionFormsViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\CollectionsStorageViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\CollectionsViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\CollectionsTeasViewModel.cs" />
+    <Compile Include="ViewModels\CashierPagesViewModels\Collection_OrderTeasViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\CupsViewModel.cs" />
+    <Compile Include="ViewModels\CashierPagesViewModels\Cups_OrderTeasViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\PackagesViewModel.cs" />
+    <Compile Include="ViewModels\CashierPagesViewModels\PackOrderTeasViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\ProducersViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\StorageViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\TeaSortsViewModel.cs" />
+    <Compile Include="PasswordBoxHelper.cs" />
+    <Compile Include="PasswordHashier.cs" />
+    <Compile Include="Rules\NotEmptyStringRule.cs" />
+    <Compile Include="Rules\NumInputRule.cs" />
+    <Compile Include="Rules\OnlyLettersRule.cs" />
+    <Compile Include="ViewModels\AdminPagesViewModels\AccountsViewModel.cs" />
+    <Compile Include="ViewModels\AdminPagesViewModels\EmployeesViewModel.cs" />
+    <Compile Include="ViewModels\AdminPagesViewModels\RolesViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\StoragePagesViewModels\TeaTypesViewModel.cs" />
+    <Page Include="Pages\AdminPages\AccountsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\EmployeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\RolesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\CashierPages\CashPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CashierPages\ExistingOrdersPage\OrderInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CashierPages\ExistingOrdersPage\OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CashierPages\ExistingOrdersPage\PayingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Collections\CollectionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Collections\CollectionTeasPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Forms\CollectionFormsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Forms\CupsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Forms\PackagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Storages\CollectionsStoragePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Teas\ProducersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Storages\StoragePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Teas\TeaTypesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StorageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoragePages\Teas\TeaSortsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CashierWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="database\TeaShopDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TeaShopDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="database\TeaShopDBModel.edmx.diagram">
+      <DependentUpon>TeaShopDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database\TeaShopDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TeaShopDBModel.edmx</DependentUpon>
+      <LastGenOutput>TeaShopDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="database\TeaShopDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TeaShopDBModel.edmx</DependentUpon>
+      <LastGenOutput>TeaShopDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Default Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.5.0.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
+</Project>

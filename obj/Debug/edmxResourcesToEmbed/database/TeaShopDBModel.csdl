@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeaShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="ID_Account" />
+    </Key>
+    <Property Name="ID_Account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account_Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Account_Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role_ID" Type="Int32" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Accounts__Role_I__11558062" FromRole="Accounts" ToRole="Roles" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Accou__15261146" FromRole="Accounts" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Collection_OrdersTeas">
+    <Key>
+      <PropertyRef Name="ID_CollectionOrderTea" />
+    </Key>
+    <Property Name="ID_CollectionOrderTea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="Collection_ID" Type="Int32" Nullable="false" />
+    <Property Name="CollectionOrderTea_Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__Colle__42ECDBF6" FromRole="Collection_OrdersTeas" ToRole="Collections" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Collectio__Order__41F8B7BD" FromRole="Collection_OrdersTeas" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="CollectionForms">
+    <Key>
+      <PropertyRef Name="ID_CollectionForm" />
+    </Key>
+    <Property Name="ID_CollectionForm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Collection_CellAmount" Type="Int32" Nullable="false" />
+    <Property Name="Collection_Size" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__Colle__22800C64" FromRole="CollectionForms" ToRole="Collections" />
+  </EntityType>
+  <EntityType Name="Collections">
+    <Key>
+      <PropertyRef Name="ID_Collection" />
+    </Key>
+    <Property Name="ID_Collection" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Collection_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Collection_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Collection_Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CollectionForm_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_ID" Type="Int32" />
+    <Property Name="Collection_ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Collection_OrdersTeas" Relationship="Self.FK__Collectio__Colle__42ECDBF6" FromRole="Collections" ToRole="Collection_OrdersTeas" />
+    <NavigationProperty Name="CollectionForms" Relationship="Self.FK__Collectio__Colle__22800C64" FromRole="Collections" ToRole="CollectionForms" />
+    <NavigationProperty Name="CollectionsStorage" Relationship="Self.FK__Collectio__Colle__26509D48" FromRole="Collections" ToRole="CollectionsStorage" />
+    <NavigationProperty Name="CollectionTeas" Relationship="Self.FK__Collectio__Colle__2A212E2C" FromRole="Collections" ToRole="CollectionTeas" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Collectio__Emplo__2374309D" FromRole="Collections" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="CollectionsStorage">
+    <Key>
+      <PropertyRef Name="ID_CollectionStorage" />
+    </Key>
+    <Property Name="ID_CollectionStorage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Collection_ID" Type="Int32" Nullable="false" />
+    <Property Name="CollectionStorage_Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__Colle__26509D48" FromRole="CollectionsStorage" ToRole="Collections" />
+  </EntityType>
+  <EntityType Name="CollectionTeas">
+    <Key>
+      <PropertyRef Name="ID_CollectionTeas" />
+    </Key>
+    <Property Name="ID_CollectionTeas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeaSort_ID" Type="Int32" Nullable="false" />
+    <Property Name="Collection_ID" Type="Int32" Nullable="false" />
+    <Property Name="CollectionTeas_AmountTeas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__Colle__2A212E2C" FromRole="CollectionTeas" ToRole="Collections" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__Collectio__TeaSo__292D09F3" FromRole="CollectionTeas" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="Cup_OrdersTeas">
+    <Key>
+      <PropertyRef Name="ID_CupOrderTeas" />
+    </Key>
+    <Property Name="ID_CupOrderTeas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="TeaSort_ID" Type="Int32" Nullable="false" />
+    <Property Name="Cup_ID" Type="Int32" Nullable="false" />
+    <Property Name="CupOrderTeas_Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cups" Relationship="Self.FK__Cup_Order__Cup_I__3E2826D9" FromRole="Cup_OrdersTeas" ToRole="Cups" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Cup_Order__Order__3C3FDE67" FromRole="Cup_OrdersTeas" ToRole="Orders" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__Cup_Order__TeaSo__3D3402A0" FromRole="Cup_OrdersTeas" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="Cups">
+    <Key>
+      <PropertyRef Name="ID_Cup" />
+    </Key>
+    <Property Name="ID_Cup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cup_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cup_AmountTea" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cup_OrdersTeas" Relationship="Self.FK__Cup_Order__Cup_I__3E2826D9" FromRole="Cups" ToRole="Cup_OrdersTeas" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID_Employee" />
+    </Key>
+    <Property Name="ID_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Employee_Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Employee_Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_Age" Type="Int32" Nullable="false" />
+    <Property Name="Account_ID" Type="Int32" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK__Employees__Accou__15261146" FromRole="Employees" ToRole="Accounts" />
+    <NavigationProperty Name="Collections" Relationship="Self.FK__Collectio__Emplo__2374309D" FromRole="Employees" ToRole="Collections" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Emplyoee__2DF1BF10" FromRole="Employees" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID_Order" />
+    </Key>
+    <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_TotalPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Emplyoee_ID" Type="Int32" />
+    <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Order_Paid" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Order_PayBack" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Collection_OrdersTeas" Relationship="Self.FK__Collectio__Order__41F8B7BD" FromRole="Orders" ToRole="Collection_OrdersTeas" />
+    <NavigationProperty Name="Cup_OrdersTeas" Relationship="Self.FK__Cup_Order__Order__3C3FDE67" FromRole="Orders" ToRole="Cup_OrdersTeas" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Orders__Emplyoee__2DF1BF10" FromRole="Orders" ToRole="Employees" />
+    <NavigationProperty Name="Pack_OrdersTeas" Relationship="Self.FK__Pack_Orde__Order__36870511" FromRole="Orders" ToRole="Pack_OrdersTeas" />
+  </EntityType>
+  <EntityType Name="Pack_OrdersTeas">
+    <Key>
+      <PropertyRef Name="ID_PackOrderTeas" />
+    </Key>
+    <Property Name="ID_PackOrderTeas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeaSort_ID" Type="Int32" Nullable="false" />
+    <Property Name="Package_ID" Type="Int32" Nullable="false" />
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="PackOrderTeas_Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Pack_Orde__Order__36870511" FromRole="Pack_OrdersTeas" ToRole="Orders" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK__Pack_Orde__Packa__3592E0D8" FromRole="Pack_OrdersTeas" ToRole="Packages" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__Pack_Orde__TeaSo__349EBC9F" FromRole="Pack_OrdersTeas" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="Packages">
+    <Key>
+      <PropertyRef Name="ID_Package" />
+    </Key>
+    <Property Name="ID_Package" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Package_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Package_AmountTea" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pack_OrdersTeas" Relationship="Self.FK__Pack_Orde__Packa__3592E0D8" FromRole="Packages" ToRole="Pack_OrdersTeas" />
+  </EntityType>
+  <EntityType Name="Producers">
+    <Key>
+      <PropertyRef Name="ID_Producer" />
+    </Key>
+    <Property Name="ID_Producer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Producer_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Producer_Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__TeaSorts__Produc__1DBB5747" FromRole="Producers" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID_Role" />
+    </Key>
+    <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK__Accounts__Role_I__11558062" FromRole="Roles" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="ID_Storage" />
+    </Key>
+    <Property Name="ID_Storage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tea_ID" Type="Int32" Nullable="false" />
+    <Property Name="Storage_CountTea" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__Storage__Tea_ID__47B19113" FromRole="Storage" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="TeaSorts">
+    <Key>
+      <PropertyRef Name="ID_TeaSort" />
+    </Key>
+    <Property Name="ID_TeaSort" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeaType_ID" Type="Int32" Nullable="false" />
+    <Property Name="Producer_ID" Type="Int32" />
+    <Property Name="TeaSort_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TeaSort_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TeaSort_FermentatinPeriod" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TeaSort_PackPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TeaSort_CupPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TeaSort_ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CollectionTeas" Relationship="Self.FK__Collectio__TeaSo__292D09F3" FromRole="TeaSorts" ToRole="CollectionTeas" />
+    <NavigationProperty Name="Cup_OrdersTeas" Relationship="Self.FK__Cup_Order__TeaSo__3D3402A0" FromRole="TeaSorts" ToRole="Cup_OrdersTeas" />
+    <NavigationProperty Name="Pack_OrdersTeas" Relationship="Self.FK__Pack_Orde__TeaSo__349EBC9F" FromRole="TeaSorts" ToRole="Pack_OrdersTeas" />
+    <NavigationProperty Name="Producers" Relationship="Self.FK__TeaSorts__Produc__1DBB5747" FromRole="TeaSorts" ToRole="Producers" />
+    <NavigationProperty Name="Storage" Relationship="Self.FK__Storage__Tea_ID__47B19113" FromRole="TeaSorts" ToRole="Storage" />
+    <NavigationProperty Name="TeaTypes" Relationship="Self.FK__TeaSorts__TeaTyp__1CC7330E" FromRole="TeaSorts" ToRole="TeaTypes" />
+  </EntityType>
+  <EntityType Name="TeaTypes">
+    <Key>
+      <PropertyRef Name="ID_TeaType" />
+    </Key>
+    <Property Name="ID_TeaType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeaType_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TeaType_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TeaSorts" Relationship="Self.FK__TeaSorts__TeaTyp__1CC7330E" FromRole="TeaTypes" ToRole="TeaSorts" />
+  </EntityType>
+  <EntityType Name="CollectionsMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Collection_Name" />
+      <PropertyRef Name="Collection_Description" />
+      <PropertyRef Name="Stored_Count" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Image_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Collection_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Collection_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="At_Storage" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Stored_Count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeasMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Sort_Name" />
+      <PropertyRef Name="Prooducer" />
+      <PropertyRef Name="Fermentation_Period" />
+      <PropertyRef Name="Cup_Price" />
+      <PropertyRef Name="Pack_Price" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Image_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sort_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sort_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Prooducer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fermentation_Period" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cup_Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Pack_Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="At_Storage" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Accounts__Role_I__11558062">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID_Role" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__Accou__15261146">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="ID_Account" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Colle__42ECDBF6">
+    <End Role="Collections" Type="Self.Collections" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Collection_OrdersTeas" Type="Self.Collection_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collections">
+        <PropertyRef Name="ID_Collection" />
+      </Principal>
+      <Dependent Role="Collection_OrdersTeas">
+        <PropertyRef Name="Collection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Order__41F8B7BD">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Collection_OrdersTeas" Type="Self.Collection_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_Order" />
+      </Principal>
+      <Dependent Role="Collection_OrdersTeas">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Colle__22800C64">
+    <End Role="CollectionForms" Type="Self.CollectionForms" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CollectionForms">
+        <PropertyRef Name="ID_CollectionForm" />
+      </Principal>
+      <Dependent Role="Collections">
+        <PropertyRef Name="CollectionForm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Colle__26509D48">
+    <End Role="Collections" Type="Self.Collections" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CollectionsStorage" Type="Self.CollectionsStorage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collections">
+        <PropertyRef Name="ID_Collection" />
+      </Principal>
+      <Dependent Role="CollectionsStorage">
+        <PropertyRef Name="Collection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Colle__2A212E2C">
+    <End Role="Collections" Type="Self.Collections" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CollectionTeas" Type="Self.CollectionTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collections">
+        <PropertyRef Name="ID_Collection" />
+      </Principal>
+      <Dependent Role="CollectionTeas">
+        <PropertyRef Name="Collection_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__Emplo__2374309D">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_Employee" />
+      </Principal>
+      <Dependent Role="Collections">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collectio__TeaSo__292D09F3">
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CollectionTeas" Type="Self.CollectionTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeaSorts">
+        <PropertyRef Name="ID_TeaSort" />
+      </Principal>
+      <Dependent Role="CollectionTeas">
+        <PropertyRef Name="TeaSort_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cup_Order__Cup_I__3E2826D9">
+    <End Role="Cups" Type="Self.Cups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cup_OrdersTeas" Type="Self.Cup_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cups">
+        <PropertyRef Name="ID_Cup" />
+      </Principal>
+      <Dependent Role="Cup_OrdersTeas">
+        <PropertyRef Name="Cup_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cup_Order__Order__3C3FDE67">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cup_OrdersTeas" Type="Self.Cup_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_Order" />
+      </Principal>
+      <Dependent Role="Cup_OrdersTeas">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cup_Order__TeaSo__3D3402A0">
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cup_OrdersTeas" Type="Self.Cup_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeaSorts">
+        <PropertyRef Name="ID_TeaSort" />
+      </Principal>
+      <Dependent Role="Cup_OrdersTeas">
+        <PropertyRef Name="TeaSort_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__Emplyoee__2DF1BF10">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="ID_Employee" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Emplyoee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pack_Orde__Order__36870511">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pack_OrdersTeas" Type="Self.Pack_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_Order" />
+      </Principal>
+      <Dependent Role="Pack_OrdersTeas">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pack_Orde__Packa__3592E0D8">
+    <End Role="Packages" Type="Self.Packages" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pack_OrdersTeas" Type="Self.Pack_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Packages">
+        <PropertyRef Name="ID_Package" />
+      </Principal>
+      <Dependent Role="Pack_OrdersTeas">
+        <PropertyRef Name="Package_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pack_Orde__TeaSo__349EBC9F">
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pack_OrdersTeas" Type="Self.Pack_OrdersTeas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeaSorts">
+        <PropertyRef Name="ID_TeaSort" />
+      </Principal>
+      <Dependent Role="Pack_OrdersTeas">
+        <PropertyRef Name="TeaSort_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeaSorts__Produc__1DBB5747">
+    <End Role="Producers" Type="Self.Producers" Multiplicity="0..1" />
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producers">
+        <PropertyRef Name="ID_Producer" />
+      </Principal>
+      <Dependent Role="TeaSorts">
+        <PropertyRef Name="Producer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Storage__Tea_ID__47B19113">
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeaSorts">
+        <PropertyRef Name="ID_TeaSort" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="Tea_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeaSorts__TeaTyp__1CC7330E">
+    <End Role="TeaTypes" Type="Self.TeaTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TeaSorts" Type="Self.TeaSorts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeaTypes">
+        <PropertyRef Name="ID_TeaType" />
+      </Principal>
+      <Dependent Role="TeaSorts">
+        <PropertyRef Name="TeaType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeaShopDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+    <EntitySet Name="Collection_OrdersTeas" EntityType="Self.Collection_OrdersTeas" />
+    <EntitySet Name="CollectionForms" EntityType="Self.CollectionForms" />
+    <EntitySet Name="Collections" EntityType="Self.Collections" />
+    <EntitySet Name="CollectionsStorage" EntityType="Self.CollectionsStorage" />
+    <EntitySet Name="CollectionTeas" EntityType="Self.CollectionTeas" />
+    <EntitySet Name="Cup_OrdersTeas" EntityType="Self.Cup_OrdersTeas" />
+    <EntitySet Name="Cups" EntityType="Self.Cups" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Pack_OrdersTeas" EntityType="Self.Pack_OrdersTeas" />
+    <EntitySet Name="Packages" EntityType="Self.Packages" />
+    <EntitySet Name="Producers" EntityType="Self.Producers" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Storage" EntityType="Self.Storage" />
+    <EntitySet Name="TeaSorts" EntityType="Self.TeaSorts" />
+    <EntitySet Name="TeaTypes" EntityType="Self.TeaTypes" />
+    <EntitySet Name="CollectionsMenu" EntityType="Self.CollectionsMenu" />
+    <EntitySet Name="TeasMenu" EntityType="Self.TeasMenu" />
+    <AssociationSet Name="FK__Accounts__Role_I__11558062" Association="Self.FK__Accounts__Role_I__11558062">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__Accou__15261146" Association="Self.FK__Employees__Accou__15261146">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Colle__42ECDBF6" Association="Self.FK__Collectio__Colle__42ECDBF6">
+      <End Role="Collections" EntitySet="Collections" />
+      <End Role="Collection_OrdersTeas" EntitySet="Collection_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Order__41F8B7BD" Association="Self.FK__Collectio__Order__41F8B7BD">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Collection_OrdersTeas" EntitySet="Collection_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Colle__22800C64" Association="Self.FK__Collectio__Colle__22800C64">
+      <End Role="CollectionForms" EntitySet="CollectionForms" />
+      <End Role="Collections" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Colle__26509D48" Association="Self.FK__Collectio__Colle__26509D48">
+      <End Role="Collections" EntitySet="Collections" />
+      <End Role="CollectionsStorage" EntitySet="CollectionsStorage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Colle__2A212E2C" Association="Self.FK__Collectio__Colle__2A212E2C">
+      <End Role="Collections" EntitySet="Collections" />
+      <End Role="CollectionTeas" EntitySet="CollectionTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__Emplo__2374309D" Association="Self.FK__Collectio__Emplo__2374309D">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Collections" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collectio__TeaSo__292D09F3" Association="Self.FK__Collectio__TeaSo__292D09F3">
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+      <End Role="CollectionTeas" EntitySet="CollectionTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cup_Order__Cup_I__3E2826D9" Association="Self.FK__Cup_Order__Cup_I__3E2826D9">
+      <End Role="Cups" EntitySet="Cups" />
+      <End Role="Cup_OrdersTeas" EntitySet="Cup_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cup_Order__Order__3C3FDE67" Association="Self.FK__Cup_Order__Order__3C3FDE67">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Cup_OrdersTeas" EntitySet="Cup_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cup_Order__TeaSo__3D3402A0" Association="Self.FK__Cup_Order__TeaSo__3D3402A0">
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+      <End Role="Cup_OrdersTeas" EntitySet="Cup_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__Emplyoee__2DF1BF10" Association="Self.FK__Orders__Emplyoee__2DF1BF10">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pack_Orde__Order__36870511" Association="Self.FK__Pack_Orde__Order__36870511">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Pack_OrdersTeas" EntitySet="Pack_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pack_Orde__Packa__3592E0D8" Association="Self.FK__Pack_Orde__Packa__3592E0D8">
+      <End Role="Packages" EntitySet="Packages" />
+      <End Role="Pack_OrdersTeas" EntitySet="Pack_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pack_Orde__TeaSo__349EBC9F" Association="Self.FK__Pack_Orde__TeaSo__349EBC9F">
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+      <End Role="Pack_OrdersTeas" EntitySet="Pack_OrdersTeas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeaSorts__Produc__1DBB5747" Association="Self.FK__TeaSorts__Produc__1DBB5747">
+      <End Role="Producers" EntitySet="Producers" />
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Storage__Tea_ID__47B19113" Association="Self.FK__Storage__Tea_ID__47B19113">
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeaSorts__TeaTyp__1CC7330E" Association="Self.FK__TeaSorts__TeaTyp__1CC7330E">
+      <End Role="TeaTypes" EntitySet="TeaTypes" />
+      <End Role="TeaSorts" EntitySet="TeaSorts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

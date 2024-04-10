@@ -1,0 +1,91 @@
+﻿<Page x:Class="Final_Practice.Pages.Teas.StoragePages.TeaTypesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Final_Practice.Pages.Teas.StoragePages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:rules="clr-namespace:Final_Practice.Rules"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeaTypesPage" Background="White" DataContext="{Binding RelativeSource={RelativeSource Self}, Path=teaTypesVM}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.ColumnSpan="2">
+            <MenuItem Header="Add new tea type" Command="{Binding addTeaTypeCommand}" CommandParameter="{Binding ElementName=InfoField, Path=DataContext}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="PlusCircleOutline" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Delete tea type" Command="{Binding deleteTeaTypeCommand}" CommandParameter="{Binding ElementName=TeaTypesDGr, Path=SelectedItem}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Delete" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Clear info" Click="OnClearInfo_Click">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Nuke" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Name="TeaTypesDGr" ItemsSource="{Binding TeaTypes}" SelectedItem="{Binding CurrentTeaType, Mode=OneWayToSource}" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_TeaType}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding TeaType_Name}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding TeaType_Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Name="InfoField" Grid.Row="1" Grid.Column="1" DataContext="{Binding CurrentTeaType}" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Padding="8" Text="Tea type info" HorizontalAlignment="Center" FontSize="20" FontFamily="Sans" FontWeight="Bold"/>
+
+            <TextBlock Grid.Row="1" Text="Name:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="8" FontSize="16" FontFamily="Sans">
+                <TextBox.Text>
+                    <Binding Path="TeaType_Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:OnlyLettersRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Grid.Row="2" Text="Description:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                <TextBox.Text>
+                    <Binding Path="TeaType_Description" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NotEmptyStringRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+
+            <Button Content="Update tea type" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="8" 
+                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.updateTeaTypeCommand}" 
+                    CommandParameter="{Binding ElementName=InfoField, Path=DataContext}"/>
+        </Grid>
+    </Grid>
+</Page>

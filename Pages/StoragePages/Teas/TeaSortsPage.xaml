@@ -1,0 +1,159 @@
+﻿<Page x:Class="Final_Practice.Pages.Teas.StoragePages.TeaSortsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Final_Practice.Pages.Teas.StoragePages"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:rules="clr-namespace:Final_Practice.Rules"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeaSortsPage" Background="White" DataContext="{Binding RelativeSource={RelativeSource Self}, Path=teasVM}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu>
+            <MenuItem Header="Add new tea sort" Command="{Binding addTeaSortCommand}" CommandParameter="{Binding CurrentTeaSort}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="PlusCircleOutline" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Delete tea sort" Command="{Binding deleteTeaSortCommand}" CommandParameter="{Binding ElementName=TeasDGr, Path=SelectedItem}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Delete" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Clear info" Click="OnClearInfo_Click">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Nuke" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Save" Command="{Binding saveTeaSortsCommand}" CommandParameter="{Binding ElementName=TeasDGr, Path=ItemsSource}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="ContentSave" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Load" Click="OnSaveData_Click">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Download" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Name="TeasDGr" ItemsSource="{Binding TeaSorts}" Grid.Row="1" CanUserAddRows="False" SelectedItem="{Binding CurrentTeaSort, Mode=OneWayToSource}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_TeaSort}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding TeaSort_Name}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding TeaSort_Description}"/>
+                <DataGridTextColumn Header="Tea type" Binding="{Binding TeaTypes.TeaType_Name}"/>
+                <DataGridTextColumn Header="Producer" Binding="{Binding Producers.Producer_Name}"/>
+                <DataGridTextColumn Header="Pack price (100gr) $" Binding="{Binding TeaSort_PackPrice}"/>
+                <DataGridTextColumn Header="Cup price (50 milliliters) $" Binding="{Binding TeaSort_CupPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Name="InfoField" Grid.RowSpan="2" Grid.Column="1" DataContext="{Binding CurrentTeaSort}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.ColumnSpan="2">
+                <Image.Source>
+                    <Binding Path="TeaSort_ImageUrl">
+                        <Binding.ValidationRules>
+                            <rules:NotNullPointingUrlRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </Image.Source>
+            </Image>
+
+            <TextBlock Grid.Row="1" Text="Name:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="8" FontSize="16" FontFamily="Sans">
+                <TextBox.Text>
+                    <Binding Path="TeaSort_Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:OnlyLettersRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Grid.Row="2" Text="Description:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                <TextBox.Text>
+                    <Binding Path="TeaSort_Description" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NotEmptyStringRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <TextBlock Grid.Row="3" Text="Fermentation period:" TextWrapping="Wrap" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                <TextBox.Text>
+                    <Binding Path="TeaSort_FermentatinPeriod" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NumInputRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Grid.Row="4" TextWrapping="Wrap" Text="Pack price(100 gr):" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                <TextBox.Text>
+                    <Binding Path="TeaSort_PackPrice" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NumInputRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBlock Grid.Row="5" TextWrapping="Wrap" Text="Cup price(50 milliliters):" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="5" Margin="8" FontSize="16" FontFamily="Sans" TextWrapping="Wrap" MaxHeight="150">
+                <TextBox.Text>
+                    <Binding Path="TeaSort_CupPrice" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <rules:NumInputRule/>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Grid.Row="6" Text="TeaType:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.TeaTypes}" SelectedItem="{Binding TeaTypes}" DisplayMemberPath="TeaType_Name"/>
+            
+            <TextBlock Grid.Row="7" Text=" Tea type:" FontSize="16" FontFamily="Sans" Padding="8" TextAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.Producers}" SelectedItem="{Binding Producers}" DisplayMemberPath="Producer_Name"/>
+
+            <Button MouseRightButtonDown="Button_MouseDoubleClick" ToolTip="Click right mouse to change image" Content="Update Tea Sort" Grid.Row="8" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="8"
+                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}, Path=DataContext.updateTeaSortCommand}"
+                    CommandParameter="{Binding ElementName=InfoField, Path=DataContext}"/>
+        </Grid>
+    </Grid>
+</Page>
